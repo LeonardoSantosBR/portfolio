@@ -1,6 +1,5 @@
 ﻿import { useState } from 'react'
 import './App.css'
-
 import { useTranslation } from 'react-i18next'
 import { CloudShader } from '@/components/ui/cloud-shader'
 import { CardSpotlight } from '@/components/ui/card-spotlight'
@@ -37,7 +36,7 @@ const experiences = [
     roleKey: 'codecampRole',
     org: 'CodeLeap',
     logo: '/assets/logo-codeleap.png',
-    period: 'fev 2026 – jul 2026 · 6 meses',
+    period: 'fev 2026 – jul 2026 · 6 meses', periodKey: 'codecampPeriod',
     location: 'Londres e Região, Reino Unido · Remoto',
     locationKey: 'codecampLocation',
     bulletKeys: ['codecampBullet1', 'codecampBullet2', 'codecampBullet3'],
@@ -52,7 +51,7 @@ const experiences = [
     roleKey: 'noviRole',
     org: 'Agência Novi',
     logo: '/assets/logo-novi.png',
-    period: 'mar 2023 – jan 2026 · 2 anos e 11 meses',
+    period: 'mar 2023 – jan 2026 · 2 anos e 11 meses', periodKey: 'noviPeriod',
     location: 'São Paulo, Brasil · Remoto',
     locationKey: 'noviLocation',
     bulletKeys: ['noviBullet1', 'noviBullet2', 'noviBullet3'],
@@ -165,7 +164,7 @@ function App() {
 
         <CardSpotlight className="skills-spotlight" radius={180} color="#dbeafe"><section id="skills" className="section container skills-section"><div className="section__head"><span className="badge">{t('skills.label')}</span><h2 className="section__title">{t('skills.title')}</h2></div><div className="skills-grid">{skills.map(([name, icon]) => <div className="skill-card" key={name}><div className="skill-card__icon"><img src={icon} alt="" loading="lazy" /></div><span className="skill-card__name">{name}</span></div>)}</div></section></CardSpotlight>
         <section id="formacao" className="section container"><div className="section__head"><span className="badge">{t('education.label')}</span></div><div className="certs">{certificates.map((certificate) => <div className="cert-item" key={certificate.name}><div className="cert-item__school">{certificate.logo && <img src={certificate.logo} alt="Logo da Estácio de Sá" className="cert-item__logo" />}<div><div className="cert-item__name">{t('education.degree')}</div><div className="cert-item__org">{t('education.school')}</div></div></div><span className="cert-item__year">{t('education.period')}</span></div>)}</div></section>
-        <section id="experiencia" className="section container"><div className="section__head"><span className="badge">{t('experience.label')}</span><h2 className="section__title">{t('experience.title')}</h2></div><div className="timeline">{experiences.map((experience, index) => <details className="timeline-item" key={experience.org} open={index === 0}><summary className="timeline-item__summary"><div className="timeline-item__top"><span className="timeline-item__role">{t(`experience.${experience.roleKey}`, { defaultValue: experience.role })}</span><span className="timeline-item__period">{experience.period}</span></div></summary><div className="timeline-item__content"><div className="timeline-item__org"><img src={experience.logo} alt="" className="timeline-item__org-logo" /><span>{experience.org}</span></div><div className="timeline-item__location">{t(`experience.${experience.locationKey}`, { defaultValue: experience.location })}</div><ul className="timeline-item__list">{experience.bulletKeys.map((key, bulletIndex) => <li key={key}>{t(`experience.${key}`, { defaultValue: experience.bullets[bulletIndex] })}</li>)}</ul></div></details>)}</div></section>
+        <section id="experiencia" className="section container"><div className="section__head"><span className="badge">{t('experience.label')}</span><h2 className="section__title">{t('experience.title')}</h2></div><div className="timeline">{experiences.map((experience, index) => <details className="timeline-item" key={experience.org} open={index === 0}><summary className="timeline-item__summary"><div className="timeline-item__top"><span className="timeline-item__role">{t(`experience.${experience.roleKey}`, { defaultValue: experience.role })}</span><span className="timeline-item__period">{t(`experiencePeriods.${experience.periodKey}`, { defaultValue: experience.period })}</span></div></summary><div className="timeline-item__content"><div className="timeline-item__org"><img src={experience.logo} alt="" className="timeline-item__org-logo" /><span>{experience.org}</span></div><div className="timeline-item__location">{t(`experience.${experience.locationKey}`, { defaultValue: experience.location })}</div><ul className="timeline-item__list">{experience.bulletKeys.map((key, bulletIndex) => <li key={key}>{t(`experience.${key}`, { defaultValue: experience.bullets[bulletIndex] })}</li>)}</ul></div></details>)}</div></section>
         <section id="projetos" className="section container projects-section"><div className="section__head"><span className="badge">{t('projects.label')}</span><h2 className="section__title">{t('projects.title')}</h2></div><div className="projects">{projects.map((project, index) => <details className="project-card" key={project.title}><summary className="project-card__summary"><div className="project-card__visual"><span>{String(index + 1).padStart(2, '0')}</span></div><div className="project-card__body"><h3 className="project-card__title">{project.title}</h3><div className="project-card__tags">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div><span className="project-card__toggle">+</span></div></summary><div className="project-card__details"><p className="project-card__desc">{t(`projectDescriptions.${project.descKey}`, { defaultValue: project.desc })}</p><a className="project-card__link" href={project.link} target="_blank" rel="noopener">{t('projects.github')}</a></div></details>)}</div><a className="projects__all-link" href="https://github.com/LeonardoSantosBR?tab=repositories" target="_blank" rel="noopener">{t('projects.all')}</a></section>
         <section id="contato" className="section container contact"><div className="contact__card"><span className="badge">{t('contact.label')}</span><h2 className="section__title">{t('contact.title')}</h2><p className="contact__desc">{t('contact.description')}</p><div className="contact__actions"><a href="mailto:leosantosmelo07@gmail.com" className="btn btn--primary">leosantosmelo07@gmail.com</a><a href="https://www.linkedin.com/in/leonardo-santos-71632521b/" target="_blank" rel="noopener" className="btn btn--ghost">{t('contact.linkedin')}</a></div></div></section>
       </main>
