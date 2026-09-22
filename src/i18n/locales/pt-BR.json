@@ -1,0 +1,11 @@
+{
+  "nav": { "about": "Sobre", "skills": "Skills", "education": "Formação", "experience": "Experiência", "projects": "Projetos", "contact": "Contato" },
+  "hero": { "greeting": "Olá, tudo bem? 👋", "title": "Eu sou Leonardo Santos", "role": "desenvolvedor full-stack", "description": "Desenvolvedor Full Stack focado na construção de aplicações escaláveis e APIs RESTful robustas com o ecossistema JavaScript/TypeScript (Node.js, NestJS, React e React Native). Combino Clean Code, arquitetura limpa e bancos de dados relacionais para resolver problemas reais de ponta a ponta com alta performance.", "location": "Rio de Janeiro • Brasil", "availability": "Disponível para CLT · PJ · Remoto" },
+  "about": { "label": "Sobre", "title": "Quem é Leonardo Santos?", "paragraph1": "Desenvolvedor Full Stack | Carioca | 24 anos. Minha jornada no mundo da tecnologia começou no início de 2022, quando descobri que criar software era exatamente o que eu queria fazer da vida. De lá pra cá, me formei em Ciência da Computação pela Estácio e venho me dedicando a entregar soluções eficientes do banco de dados à interface do usuário.", "paragraph2": "Acredito que código bom é código limpo. Por isso, aplico no meu dia a dia princípios de Clean Code, Arquitetura Limpa, além de experiência com PostgreSQL, MySQL, Prisma ORM e Docker. Mais do que escrever linhas de código, movido pela curiosidade diária, meu objetivo é transformar ideias complexas em soluções eficientes, elegantes e que realmente façam a diferença." },
+  "skills": { "label": "Skills", "title": "Tecnologias que uso no dia a dia" },
+  "education": { "label": "Formação", "degree": "Ciência da Computação", "school": "Estácio de Sá", "period": "2021 – 2024" },
+  "experience": { "label": "Experiência", "title": "Trajetória profissional" },
+  "projects": { "label": "Projetos", "title": "Projetos que venho construindo", "github": "ver no GitHub →", "all": "ver todos os projetos no GitHub →" },
+  "contact": { "label": "Contato", "title": "Vamos conversar?", "description": "Estou disponível para oportunidades CLT, PJ ou remoto. Se tiver um projeto em mente ou quiser trocar uma ideia sobre tecnologia, é só chamar.", "linkedin": "Conversar no LinkedIn" },
+  "footer": "Construído com React, TypeScript e Tailwind CSS"
+}

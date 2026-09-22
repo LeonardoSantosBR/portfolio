@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import './App.css'
 
+import { useTranslation } from 'react-i18next'
 import { CloudShader } from '@/components/ui/cloud-shader'
 import { CardSpotlight } from '@/components/ui/card-spotlight'
 import hero2 from './assets/hero2.jpeg'
@@ -33,10 +34,13 @@ const certificates = [
 const experiences = [
   {
     role: 'CodeCamp — Estágio em desenvolvimento Front-end',
+    roleKey: 'codecampRole',
     org: 'CodeLeap',
     logo: '/assets/logo-codeleap.png',
     period: 'fev 2026 – jul 2026 · 6 meses',
     location: 'Londres e Região, Reino Unido · Remoto',
+    locationKey: 'codecampLocation',
+    bulletKeys: ['codecampBullet1', 'codecampBullet2', 'codecampBullet3'],
     bullets: [
       'Desenvolvimento e manutenção de sites e aplicativos performáticos utilizando React e React Native',
       'Uso de TanStack React Query para gerenciamento de estado assíncrono',
@@ -45,10 +49,13 @@ const experiences = [
   },
   {
     role: 'Desenvolvedor de Back-end júnior',
+    roleKey: 'noviRole',
     org: 'Agência Novi',
     logo: '/assets/logo-novi.png',
     period: 'mar 2023 – jan 2026 · 2 anos e 11 meses',
     location: 'São Paulo, Brasil · Remoto',
+    locationKey: 'noviLocation',
+    bulletKeys: ['noviBullet1', 'noviBullet2', 'noviBullet3'],
     bullets: [
       'Criação e manutenção de APIs usando Node.js e NestJS, com foco em TypeScript e JavaScript',
       'Modelagem e implementação de regras de negócio',
@@ -59,14 +66,28 @@ const experiences = [
 
 const projects = [
   {
-    title: 'SaaS de link analytics',
-    desc: 'Plataforma de encurtamento e análise de links, construída como parte de um processo seletivo técnico — API RESTful, autenticação e dashboard de métricas.',
-    tags: ['Node.js', 'TypeScript', 'PostgreSQL', 'Docker'],
+    title: 'Curiosity',
+    desc: 'Aplicação da NASA para explorar uma galeria espacial.', descKey: 'curiosity',
+    tags: ['React Native', 'Tanstack React Query', 'Tailwind CSS'],
+    link: 'https://github.com/LeonardoSantosBR/curiosity',
   },
   {
-    title: 'Ateliê da Coleguinha',
-    desc: 'Site institucional para ateliê de costura, com carrossel de peças e seções de apresentação da marca.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    title: 'Banking Transactions',
+    desc: 'Projeto de transações bancárias desenvolvido com Java e Spring Boot.', descKey: 'banking',
+    tags: ['Java 25', 'JWT' ,'Spring Boot'],
+    link: 'https://github.com/LeonardoSantosBR/banking-transactions-java-spring-boot',
+  },
+  {
+    title: 'BirdAI',
+    desc: 'Interface de catálogo de aves para uma aplicação full-stack.', descKey: 'birdai',
+    tags: ['React Native', 'NestJs', 'PostgreSql' ,'Supabase'],
+    link: 'https://github.com/LeonardoSantosBR/birdai-ui',
+  },
+  {
+    title: 'Test Corrections API',
+    desc: 'API REST para criação de testes e geração de notas.', descKey: 'testCorrections',
+    tags: ['NestJS','MySQL','Prisma','JWT', 'TypeScript'],
+    link: 'https://github.com/LeonardoSantosBR/test-corrections-nestjs-prisma7',
   },
 ] as const
 
@@ -75,16 +96,18 @@ function Icon({ children, size = 18 }: { children: React.ReactNode; size?: numbe
 }
 
 function App() {
+  const { t, i18n } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false)
   const sections = [
-    { id: 'sobre', label: 'Sobre' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'formacao', label: 'Formação' },
-    { id: 'experiencia', label: 'Experiência' },
-    { id: 'projetos', label: 'Projetos' },
-    { id: 'contato', label: 'Contato' },
+    { id: 'sobre', label: t('nav.about') },
+    { id: 'skills', label: t('nav.skills') },
+    { id: 'formacao', label: t('nav.education') },
+    { id: 'experiencia', label: t('nav.experience') },
+    { id: 'projetos', label: t('nav.projects') },
+    { id: 'contato', label: t('nav.contact') },
   ]
+  const language = i18n.language.startsWith('en') ? 'en' : 'pt-BR'
 
   return (
     <>
@@ -96,10 +119,10 @@ function App() {
         <div className="container header__inner">
           <span className="logo">Leo<span className="logo__accent">/&gt;</span></span>
           <nav className="nav">{sections.map((item) => <a key={item.id} href={`#${item.id}`} onClick={closeMenu}>{item.label}</a>)}</nav>
-          <div className="header__actions"><a className="btn btn--primary" href="mailto:leosantosmelo07@gmail.com">Contato</a></div>
           <button className="menu-btn" aria-label="Abrir menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
             <Icon size={22}><path d="M3 6h18M3 12h18M3 18h18" /></Icon>
           </button>
+          <button className="language-toggle" type="button" onClick={() => i18n.changeLanguage(language === 'en' ? 'pt-BR' : 'en')} aria-label="Change language">{language === 'en' ? 'EN' : 'PT'}</button>
         </div>
         <nav className={`mobile-nav ${menuOpen ? 'is-open' : ''}`} hidden={!menuOpen}>
           {sections.map((item) => <a key={item.id} href={`#${item.id}`} onClick={closeMenu}>{item.label}</a>)}
@@ -109,12 +132,12 @@ function App() {
       <main id="top">
         <section className="hero container">
           <div className="hero__text">
-            <p className="eyebrow">Olá, tudo bem? 👋</p>
-            <h1 className="hero__title">Eu sou Leonardo Santos<br /><span className="hero__title-accent">desenvolvedor full-stack</span></h1>
-            <p className="hero__desc">Desenvolvedor Full Stack focado na construção de aplicações escaláveis e APIs RESTful robustas com o ecossistema JavaScript/TypeScript (Node.js, NestJS, React e React Native). Combino Clean Code, arquitetura limpa e bancos de dados relacionais para resolver problemas reais de ponta a ponta com alta performance.</p>
+            <p className="eyebrow">{t('hero.greeting')}</p>
+            <h1 className="hero__title">{t('hero.title')}<br /><span className="hero__title-accent">{t('hero.role')}</span></h1>
+            <p className="hero__desc">{t('hero.description')}</p>
             <div className="hero__meta">
-              <span className="hero__meta-item"><Icon size={14}><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.3" /></Icon>Rio de Janeiro • Brasil</span>
-              <span className="hero__meta-item hero__meta-item--status"><span className="status-dot" />Disponível para CLT · PJ · Remoto</span>
+              <span className="hero__meta-item"><Icon size={14}><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.3" /></Icon>{t('hero.location')}</span>
+              <span className="hero__meta-item hero__meta-item--status"><span className="status-dot" />{t('hero.availability')}</span>
             </div>
             <div className="hero__links">
               <a href="https://github.com/LeonardoSantosBR" target="_blank" rel="noopener" className="icon-link" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.19c0 4.49 2.87 8.3 6.84 9.64.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.57 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.19C22 6.58 17.52 2 12 2Z" /></svg></a>
@@ -131,22 +154,22 @@ function App() {
 
       <main>
         <section id="sobre" className="section container">
-          <div className="section__head"><span className="badge">Sobre</span><h2 className="section__title">Quem é Leonardo Santos?</h2></div>
+          <div className="section__head"><span className="badge">{t('about.label')}</span><h2 className="section__title">{t('about.title')}</h2></div>
           <div className="about"><div className="about__photo"><img src={hero2} alt="Leonardo Santos" className="about__photo-img" /></div>
             <div className="about__text">
-              <p>Desenvolvedor de Software Full Stack com forte foco em arquitetura limpa, Clean Code e na entrega de soluções eficientes de ponta a ponta. Trago sólida experiência no ecossistema JavaScript e TypeScript, atuando tanto na construção de APIs RESTful robustas e escalables com Node.js e NestJS quanto no desenvolvimento de interfaces modernas e fluidas com React e React Native (Expo).</p>
-              <p>Tenho experiência sólida com bancos de dados relacionais — PostgreSQL e MySQL — Prisma ORM e conteinerização com Docker. Sou formado em Ciência da Computação pela Estácio de Sá, e combino essa base técnica com foco em Clean Code, arquitetura limpa e boas práticas, sempre buscando entregar soluções eficientes que resolvem problemas reais de ponta a ponta.</p>
+            <p>{t('about.paragraph1')}</p>
+              <p>{t('about.paragraph2')}</p>
             </div>
           </div>
         </section>
 
-        <CardSpotlight className="skills-spotlight" radius={180} color="#dbeafe"><section id="skills" className="section container skills-section"><div className="section__head"><span className="badge">Skills</span><h2 className="section__title">Tecnologias que uso no dia a dia</h2></div><div className="skills-grid">{skills.map(([name, icon]) => <div className="skill-card" key={name}><div className="skill-card__icon"><img src={icon} alt="" loading="lazy" /></div><span className="skill-card__name">{name}</span></div>)}</div></section></CardSpotlight>
-        <section id="formacao" className="section container"><div className="section__head"><span className="badge">formação</span></div><div className="certs">{certificates.map((certificate) => <div className="cert-item" key={certificate.name}><div className="cert-item__school">{certificate.logo && <img src={certificate.logo} alt="Logo da Estácio de Sá" className="cert-item__logo" />}<div><div className="cert-item__name">{certificate.name}</div><div className="cert-item__org">{certificate.org}</div></div></div><span className="cert-item__year">{certificate.period}</span></div>)}</div></section>
-        <section id="experiencia" className="section container"><div className="section__head"><span className="badge">experiência</span><h2 className="section__title">Trajetória profissional</h2></div><div className="timeline">{experiences.map((experience, index) => <details className="timeline-item" key={experience.org} open={index === 0}><summary className="timeline-item__summary"><div className="timeline-item__top"><span className="timeline-item__role">{experience.role}</span><span className="timeline-item__period">{experience.period}</span></div></summary><div className="timeline-item__content"><div className="timeline-item__org"><img src={experience.logo} alt="" className="timeline-item__org-logo" /><span>{experience.org}</span></div><div className="timeline-item__location">{experience.location}</div><ul className="timeline-item__list">{experience.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul></div></details>)}</div></section>
-        <section id="projetos" className="section container"><div className="section__head"><span className="badge">projetos</span><h2 className="section__title">Alguns projetos que venho construindo</h2></div><div className="projects">{projects.map((project) => <div className="project-card" key={project.title}><div className="project-card__visual"><span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-muted)' }}>preview em breve</span></div><div className="project-card__body"><h3 className="project-card__title">{project.title}</h3><p className="project-card__desc">{project.desc}</p><div className="project-card__tags">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div></div></div>)}</div></section>
-        <section id="contato" className="section container contact"><div className="contact__card"><span className="badge">contato</span><h2 className="section__title">Vamos conversar?</h2><p className="contact__desc">Estou disponível para oportunidades CLT, PJ ou remoto. Se tiver um projeto em mente ou quiser trocar uma ideia sobre tecnologia, é só chamar.</p><div className="contact__actions"><a href="mailto:leosantosmelo07@gmail.com" className="btn btn--primary">leosantosmelo07@gmail.com</a><a href="https://github.com/LeonardoSantosBR" target="_blank" rel="noopener" className="btn btn--ghost">GitHub</a></div></div></section>
+        <CardSpotlight className="skills-spotlight" radius={180} color="#dbeafe"><section id="skills" className="section container skills-section"><div className="section__head"><span className="badge">{t('skills.label')}</span><h2 className="section__title">{t('skills.title')}</h2></div><div className="skills-grid">{skills.map(([name, icon]) => <div className="skill-card" key={name}><div className="skill-card__icon"><img src={icon} alt="" loading="lazy" /></div><span className="skill-card__name">{name}</span></div>)}</div></section></CardSpotlight>
+        <section id="formacao" className="section container"><div className="section__head"><span className="badge">{t('education.label')}</span></div><div className="certs">{certificates.map((certificate) => <div className="cert-item" key={certificate.name}><div className="cert-item__school">{certificate.logo && <img src={certificate.logo} alt="Logo da Estácio de Sá" className="cert-item__logo" />}<div><div className="cert-item__name">{t('education.degree')}</div><div className="cert-item__org">{t('education.school')}</div></div></div><span className="cert-item__year">{t('education.period')}</span></div>)}</div></section>
+        <section id="experiencia" className="section container"><div className="section__head"><span className="badge">{t('experience.label')}</span><h2 className="section__title">{t('experience.title')}</h2></div><div className="timeline">{experiences.map((experience, index) => <details className="timeline-item" key={experience.org} open={index === 0}><summary className="timeline-item__summary"><div className="timeline-item__top"><span className="timeline-item__role">{t(`experience.${experience.roleKey}`, { defaultValue: experience.role })}</span><span className="timeline-item__period">{experience.period}</span></div></summary><div className="timeline-item__content"><div className="timeline-item__org"><img src={experience.logo} alt="" className="timeline-item__org-logo" /><span>{experience.org}</span></div><div className="timeline-item__location">{t(`experience.${experience.locationKey}`, { defaultValue: experience.location })}</div><ul className="timeline-item__list">{experience.bulletKeys.map((key, bulletIndex) => <li key={key}>{t(`experience.${key}`, { defaultValue: experience.bullets[bulletIndex] })}</li>)}</ul></div></details>)}</div></section>
+        <section id="projetos" className="section container projects-section"><div className="section__head"><span className="badge">{t('projects.label')}</span><h2 className="section__title">{t('projects.title')}</h2></div><div className="projects">{projects.map((project, index) => <details className="project-card" key={project.title} open={index === 0}><summary className="project-card__summary"><div className="project-card__visual"><span>{String(index + 1).padStart(2, '0')}</span></div><div className="project-card__body"><h3 className="project-card__title">{project.title}</h3><div className="project-card__tags">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div><span className="project-card__toggle">+</span></div></summary><div className="project-card__details"><p className="project-card__desc">{t(`projectDescriptions.${project.descKey}`, { defaultValue: project.desc })}</p><a className="project-card__link" href={project.link} target="_blank" rel="noopener">{t('projects.github')}</a></div></details>)}</div><a className="projects__all-link" href="https://github.com/LeonardoSantosBR?tab=repositories" target="_blank" rel="noopener">{t('projects.all')}</a></section>
+        <section id="contato" className="section container contact"><div className="contact__card"><span className="badge">{t('contact.label')}</span><h2 className="section__title">{t('contact.title')}</h2><p className="contact__desc">{t('contact.description')}</p><div className="contact__actions"><a href="mailto:leosantosmelo07@gmail.com" className="btn btn--primary">leosantosmelo07@gmail.com</a><a href="https://www.linkedin.com/in/leonardo-santos-71632521b/" target="_blank" rel="noopener" className="btn btn--ghost">{t('contact.linkedin')}</a></div></div></section>
       </main>
-      <footer className="footer"><div className="container footer__inner"><span>Leonardo Santos © 2026</span><span>Construído com React, TypeScript e Tailwind CSS</span></div></footer>
+      <footer className="footer"><div className="container footer__inner"><span>Leonardo Santos © 2026</span><span>{t('footer')}</span></div></footer>
     </>
   )
 }
