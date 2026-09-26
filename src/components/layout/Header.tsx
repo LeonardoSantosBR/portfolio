@@ -20,7 +20,7 @@ export function Header() {
       <nav className="nav">{sections.map((item) => <a key={item.id} href={`#${item.id}`} onClick={closeMenu}>{item.label}</a>)}</nav>
       <button className="menu-btn" aria-label="Abrir menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Icon size={22}><path d="M3 6h18M3 12h18M3 18h18" /></Icon></button>
       <div className="header__actions">
-        <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'} title={theme === 'dark' ? 'Tema claro' : 'Tema escuro'}>{theme === 'dark' ? '☀' : '☾'}</button>
+        <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'} title={theme === 'dark' ? 'Tema claro' : 'Tema escuro'}>{theme === 'dark' ? '☾' : '☀'}</button>
         <button className="language-toggle" type="button" onClick={() => i18n.changeLanguage(language === 'en' ? 'pt-BR' : 'en')} aria-label="Change language">{language === 'en' ? 'EN' : 'PT'}</button>
       </div>
     </div>
