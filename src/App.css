@@ -905,17 +905,17 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-mono);
   font-size: 18px;
 }
-.project-card__summary .project-card__body { padding: 22px 28px; }
+.project-card__summary .project-card__body { padding: 22px 52px 22px 28px; }
 .project-card__summary .project-card__title { margin-bottom: 12px; }
 .project-card__summary .project-card__tags { margin-bottom: 0; }
 .project-card__toggle {
   position: absolute;
   right: 24px;
-  top: 50%;
+  top: 24px;
   color: var(--accent);
   font-family: var(--font-mono);
   font-size: 20px;
-  transform: translateY(-50%);
+  line-height: 1;
 }
 .project-card[open] .project-card__toggle { font-size: 0; }
 .project-card[open] .project-card__toggle::after { content: '−'; font-size: 20px; }
@@ -1079,7 +1079,7 @@ a:focus-visible, button:focus-visible {
 
   .project-card { grid-template-columns: 1fr; }
   .project-card__summary { grid-template-columns: 82px 1fr; }
-  .project-card__summary .project-card__body { padding: 18px 20px; }
+  .project-card__summary .project-card__body { padding: 18px 44px 18px 20px; }
   .project-card__details { padding: 18px 20px 22px; }
 
   .contact__card { padding: 36px 24px; }
