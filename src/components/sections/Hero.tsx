@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { CloudShader } from "@/components/ui/cloud-shader";
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { Icon } from "@/components/ui/Icon";
 import { Header } from "@/components/layout/Header";
 
@@ -7,14 +7,11 @@ export function Hero() {
   const { t } = useTranslation();
   return (
     <div className="sky-hero">
-      <CloudShader
+      <BackgroundBeamsWithCollision
         className="sky-hero__background"
-        speed={0.65}
-        count={6}
-        cloudColor="#fffaf0"
-        skyTopColor="#315f9b"
-        skyBottomColor="#b6dcf4"
-      />
+      >
+        <span aria-hidden="true" />
+      </BackgroundBeamsWithCollision>
       <img
         className="plane-wing"
         src="/assets/plane-wing.png"
