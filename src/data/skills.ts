@@ -5,13 +5,16 @@ export const skills = [
   ['NestJS', 'https://cdn.simpleicons.org/nestjs/E0234E'],
   ['React', 'https://cdn.simpleicons.org/react/61DAFB'],
   ['React Native', 'https://cdn.simpleicons.org/react/3178C6'],
-  ['AWS', 'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonwebservices.svg'],
   ['PostgreSQL', 'https://cdn.simpleicons.org/postgresql/4169E1'],
   ['Claude', 'https://cdn.simpleicons.org/claude/D97757'],
   ['MySQL', 'https://cdn.simpleicons.org/mysql/4479A1'],
   ['Prisma', 'https://cdn.simpleicons.org/prisma/ADB8D8'],
   ['Codex', 'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg'],
-  ['Python', 'https://cdn.simpleicons.org/python/3776AB'],
-  ['Spring Boot', 'https://cdn.simpleicons.org/springboot/6DB33F'],
   ['Docker', 'https://cdn.simpleicons.org/docker/2496ED'],
+] as const
+
+export const learningSkills = [
+  ['Python', 'https://cdn.simpleicons.org/python/3776AB'],
+  ['AWS', 'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonwebservices.svg'],
+  ['Spring Boot', 'https://cdn.simpleicons.org/springboot/6DB33F'],
 ] as const
