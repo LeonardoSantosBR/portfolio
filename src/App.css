@@ -82,7 +82,7 @@ img { max-width: 100%; display: block; }
 }
 .plane-wing {
   position: absolute;
-  right: -7%;
+  right: 62%;
   bottom: -18%;
   z-index: -1;
   width: min(760px, 60vw);
