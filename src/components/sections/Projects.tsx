@@ -17,7 +17,14 @@ export function Projects() {
                 <span>{String(index + 1).padStart(2, "0")}</span>
               </div>
               <div className="project-card__body">
-                <h3 className="project-card__title">{project.title}</h3>
+                <div className="project-card__title-row">
+                  <h3 className="project-card__title">{project.title}</h3>
+                  <span className={`project-card__status project-card__status--${project.status}`}>
+                    {t(`projectStatuses.${project.status}`, {
+                      defaultValue: { planning: "Planejamento", building: "Construindo", finished: "Finalizado" }[project.status],
+                    })}
+                  </span>
+                </div>
                 <div className="project-card__tags">
                   {project.tags.map((tag) => (
                     <span className="tag" key={tag}>

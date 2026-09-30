@@ -983,7 +983,21 @@ img { max-width: 100%; display: block; }
   font-size: 18px;
 }
 .project-card__summary .project-card__body { padding: 22px 52px 22px 28px; }
-.project-card__summary .project-card__title { margin-bottom: 12px; }
+.project-card__title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.project-card__summary .project-card__title { margin-bottom: 0; }
+.project-card__status {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.project-card__status--planning { color: #8a5a00; background: #fff4cf; }
+.project-card__status--building { color: #185b9d; background: #dceeff; }
+.project-card__status--finished { color: #176b45; background: #dff7e9; }
 .project-card__summary .project-card__tags { margin-bottom: 0; }
 .project-card__toggle {
   position: absolute;

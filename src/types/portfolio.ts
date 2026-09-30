@@ -4,6 +4,7 @@ export type Project = {
   descKey: string
   tags: readonly string[]
   link: string
+  status: 'planning' | 'building' | 'finished'
 }
 
 export type Experience = {
