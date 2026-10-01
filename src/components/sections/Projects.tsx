@@ -1,8 +1,10 @@
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "motion/react";
 import { projects } from "@/data/projects";
 
 export function Projects() {
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
   return (
     <section id="projetos" className="section container projects-section">
       <div className="section__head">
@@ -11,7 +13,14 @@ export function Projects() {
       </div>
       <div className="projects">
         {projects.map((project, index) => (
-          <details className="project-card" key={project.title}>
+          <motion.details
+            className="project-card"
+            key={project.title}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.1 }}
+          >
             <summary className="project-card__summary">
               <div className="project-card__visual">
                 <span>{String(index + 1).padStart(2, "0")}</span>
@@ -50,7 +59,7 @@ export function Projects() {
                 {t("projects.github")}
               </a>
             </div>
-          </details>
+          </motion.details>
         ))}
       </div>
       <a

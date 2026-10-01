@@ -1,8 +1,10 @@
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "motion/react";
 import { experiences } from "@/data/experiences";
 
 export function Experience() {
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
   return (
     <section id="experiencia" className="section container">
       <div className="section__head">
@@ -11,10 +13,14 @@ export function Experience() {
       </div>
       <div className="timeline">
         {experiences.map((experience, index) => (
-          <details
+          <motion.details
             className="timeline-item"
             key={experience.org}
             open={index === 0}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.1 }}
           >
             <summary className="timeline-item__summary">
               <div className="timeline-item__top">
@@ -54,7 +60,7 @@ export function Experience() {
                 ))}
               </ul>
             </div>
-          </details>
+          </motion.details>
         ))}
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "motion/react";
 import { Icon } from "@/components/ui/Icon";
 import { certifications } from "@/data/certifications";
 
@@ -7,6 +8,7 @@ const FEATURED_COUNT = 3;
 
 export function Certifications() {
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
   const [showAll, setShowAll] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState<(typeof certifications)[number] | null>(null);
   const visibleItems = showAll ? certifications : certifications.slice(0, FEATURED_COUNT);
@@ -27,8 +29,15 @@ export function Certifications() {
         <h2 className="section__title">{t("certifications.title")}</h2>
       </div>
       <div className="certifications-grid">
-        {visibleItems.map((certification) => (
-          <article className="certification-card" key={certification.id}>
+        {visibleItems.map((certification, index) => (
+          <motion.article
+            className="certification-card"
+            key={certification.id}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.1 }}
+          >
             <div className="certification-card__image">
               <img src={certification.logo} alt={t(`certifications.${certification.organizationKey}`)} />
             </div>
@@ -43,7 +52,7 @@ export function Certifications() {
                 {t("certifications.viewCertificate")}
               </button>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
       {certifications.length > FEATURED_COUNT && (

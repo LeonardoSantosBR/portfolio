@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "motion/react";
 import estacioLogo from "@/assets/estacio-logo.jpg";
 import diploma from "@/assets/diploma.png";
 import { Icon } from "@/components/ui/Icon";
 
 export function Education() {
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
   const [diplomaOpen, setDiplomaOpen] = useState(false);
   useEffect(() => {
     if (!diplomaOpen) return;
@@ -21,7 +23,13 @@ export function Education() {
         <span className="badge">{t("education.label")}</span>
       </div>
       <div className="certs">
-        <div className="cert-item">
+        <motion.div
+          className="cert-item"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
           <div className="cert-item__school">
             <img
               src={estacioLogo}
@@ -38,7 +46,7 @@ export function Education() {
             </div>
           </div>
           <span className="cert-item__year">{t("education.period")}</span>
-        </div>
+        </motion.div>
       </div>
     </section>
     {diplomaOpen && <div className="diploma-modal" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setDiplomaOpen(false); }}>
