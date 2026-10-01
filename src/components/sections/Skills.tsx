@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { learningSkills, skills } from "@/data/skills";
-import aiLogo from "@/assets/ia-logo.png";
 
 function SkillGrid({ items }: { items: readonly (readonly [string, string])[] }) {
   return (
@@ -36,16 +35,6 @@ export function Skills() {
           </div>
         </div>
 
-        <article className="ai-manifesto">
-          <div className="ai-manifesto__visual" aria-hidden="true">
-            <img src={aiLogo} alt="" />
-          </div>
-          <div className="ai-manifesto__content">
-            <span className="badge">{t("skills.aiLabel")}</span>
-            <h3 className="ai-manifesto__title">{t("skills.aiTitle")}</h3>
-            <p>{t("skills.aiManifesto")}</p>
-          </div>
-        </article>
       </section>
     </div>
   );

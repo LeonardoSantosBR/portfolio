@@ -686,6 +686,10 @@ img {
 
 .certification-card__content {
   padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 186px;
 }
 
 .certification-card__status {
@@ -708,15 +712,19 @@ img {
 }
 
 .certification-card__organization--cs50 {
-  color: rgb(204, 204, 204) !important;
+  color: rgb(139, 139, 139) !important;
 }
 
 .certification-card__organization--docker {
-  color: rgb(204, 204, 204)  !important;
+  color: rgb(139, 139, 139) !important;
 }
 
 .certification-card__organization--sql {
-  color: rgb(204, 204, 204)  !important;
+  color: rgb(139, 139, 139) !important;
+}
+
+.certification-card__content .cert-item__diploma {
+  margin-top: auto;
 }
 
 
