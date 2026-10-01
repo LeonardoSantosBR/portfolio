@@ -9,7 +9,7 @@ export function Header() {
   const { theme, toggleTheme } = useTheme()
   const language = i18n.language.startsWith('en') ? 'en' : 'pt-BR'
   const sections = [
-    { id: 'sobre', label: t('nav.about') }, { id: 'skills', label: t('nav.skills') }, { id: 'formacao', label: t('nav.education') },
+    { id: 'sobre', label: t('nav.about') }, { id: 'skills', label: t('nav.skills') }, { id: 'formacao', label: t('nav.education') }, { id: 'certificacoes', label: t('nav.certifications') },
     { id: 'experiencia', label: t('nav.experience') }, { id: 'projetos', label: t('nav.projects') }, { id: 'contato', label: t('nav.contact') },
   ]
   const closeMenu = () => setMenuOpen(false)
