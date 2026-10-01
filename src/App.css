@@ -708,12 +708,17 @@ img {
 }
 
 .certification-card__organization--cs50 {
-  color: #f76077 !important;
+  color: rgb(204, 204, 204) !important;
 }
 
 .certification-card__organization--docker {
-  color: #b45dff !important;
+  color: rgb(204, 204, 204)  !important;
 }
+
+.certification-card__organization--sql {
+  color: rgb(204, 204, 204)  !important;
+}
+
 
 .certifications-actions {
   display: flex;
