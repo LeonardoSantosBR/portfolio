@@ -660,31 +660,46 @@ img {
 }
 
 .certification-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   overflow: hidden;
   background: var(--surface);
-  border: 1px dashed var(--border);
+  border: 1px solid var(--border);
   border-radius: 14px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 10px 26px rgba(38, 55, 91, .08);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.certification-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: 0 14px 32px rgba(38, 55, 91, .13);
 }
 
 .certification-card__image {
-  min-height: 132px;
+  height: 132px;
+  flex: 0 0 132px;
   display: grid;
   place-items: center;
   padding: 20px;
   color: var(--text-muted);
   background: color-mix(in srgb, var(--accent) 8%, var(--surface));
-  border-bottom: 1px dashed var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .certification-card__image img {
-  width: auto;
-  max-width: min(180px, 75%);
-  height: 84px;
+  width: 104px;
+  height: 88px;
+  padding: 10px;
   object-fit: contain;
+  background: #fff;
+  border: 1px solid rgba(80, 105, 160, .12);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(30, 48, 85, .08);
 }
 
 .certification-card__content {
+  flex: 1;
   padding: 18px;
   display: flex;
   flex-direction: column;
@@ -700,9 +715,11 @@ img {
 }
 
 .certification-card h3 {
+  min-height: 2.9em;
   margin-top: 8px;
   font-size: 16px;
   font-weight: 600;
+  line-height: 1.45;
 }
 
 .certification-card p {
