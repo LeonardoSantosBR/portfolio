@@ -677,8 +677,8 @@ img {
 }
 
 .certification-card__image {
-  height: 132px;
-  flex: 0 0 132px;
+  height: 240px;
+  flex: 0 0 240px;
   display: grid;
   place-items: center;
   padding: 20px;
@@ -688,8 +688,8 @@ img {
 }
 
 .certification-card__image img {
-  width: 104px;
-  height: 88px;
+  width: 200px;
+  height: 200px;
   padding: 10px;
   object-fit: contain;
   background: #fff;
@@ -1450,12 +1450,6 @@ img {
   display: grid;
   grid-template-columns: 110px 1fr;
   position: relative;
-  cursor: pointer;
-  list-style: none;
-}
-
-.project-card__summary::-webkit-details-marker {
-  display: none;
 }
 
 .project-card__summary .project-card__visual {
@@ -1510,25 +1504,6 @@ img {
 
 .project-card__summary .project-card__tags {
   margin-bottom: 0;
-}
-
-.project-card__toggle {
-  position: absolute;
-  right: 24px;
-  top: 24px;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 20px;
-  line-height: 1;
-}
-
-.project-card[open] .project-card__toggle {
-  font-size: 0;
-}
-
-.project-card[open] .project-card__toggle::after {
-  content: '−';
-  font-size: 20px;
 }
 
 .project-card__details {

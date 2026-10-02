@@ -13,7 +13,7 @@ export function Projects() {
       </div>
       <div className="projects">
         {projects.map((project, index) => (
-          <motion.details
+          <motion.article
             className="project-card"
             key={project.title}
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
@@ -21,7 +21,7 @@ export function Projects() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.1 }}
           >
-            <summary className="project-card__summary">
+            <div className="project-card__summary">
               <div className="project-card__visual">
                 <span>{String(index + 1).padStart(2, "0")}</span>
               </div>
@@ -41,9 +41,8 @@ export function Projects() {
                     </span>
                   ))}
                 </div>
-                <span className="project-card__toggle">+</span>
               </div>
-            </summary>
+            </div>
             <div className="project-card__details">
               <p className="project-card__desc">
                 {t(`projectDescriptions.${project.descKey}`, {
@@ -59,7 +58,7 @@ export function Projects() {
                 {t("projects.github")}
               </a>
             </div>
-          </motion.details>
+          </motion.article>
         ))}
       </div>
       <a
