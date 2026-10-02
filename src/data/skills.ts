@@ -15,6 +15,6 @@ export const skills = [
 
 export const learningSkills = [
   ['Python', 'https://cdn.simpleicons.org/python/3776AB'],
-  ['AWS', 'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/amazonwebservices.svg'],
+  ['AWS', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg'],
   ['Spring Boot', 'https://cdn.simpleicons.org/springboot/6DB33F'],
 ] as const
