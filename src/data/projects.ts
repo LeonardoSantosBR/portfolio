@@ -18,14 +18,6 @@ export const projects: readonly Project[] = [
     link: "https://github.com/LeonardoSantosBR/worldcup-stickers-collection",
   },
   {
-    title: "Curiosity",
-    status: "finished",
-    desc: "Aplicação mobile que consome dados da NASA para apresentar uma galeria espacial dinâmica, com busca, carregamento eficiente de imagens e uma experiência simples para explorar diferentes registros e conteúdos do espaço.",
-    descKey: "curiosity",
-    tags: ["React Native", "Tanstack React Query", "Tailwind CSS"],
-    link: "https://github.com/LeonardoSantosBR/curiosity",
-  },
-  {
     title: "BirdAI",
     status: "finished",
     desc: "Interface mobile de catálogo de aves conectada a uma solução full-stack, reunindo exploração de espécies, dados organizados e integração com backend. A aplicação foi estruturada para facilitar a descoberta das aves e manter uma navegação clara em diferentes dispositivos.",
